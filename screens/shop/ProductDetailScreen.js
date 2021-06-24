@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
    StyleSheet,
    Text,
@@ -10,8 +10,11 @@ import {
 } from "react-native";
 
 import Colors from "../../constants/Colors";
+import { addToCart } from "../../store/actions/cart";
 
 const ProductDetailScreen = (props) => {
+   const dispatch = useDispatch();
+
    const selectedParam = props.navigation.getParam("productId");
 
    const product = useSelector((state) =>
@@ -27,7 +30,9 @@ const ProductDetailScreen = (props) => {
             <Button
                color={Colors.primary}
                title="Add to Cart"
-               onPress={() => {}}
+               onPress={() => {
+                  dispatch(addToCart(product));
+               }}
             />
          </View>
 
