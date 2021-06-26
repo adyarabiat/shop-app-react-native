@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import ShopNavigator from "./navigation/ShopNavigator";
 import { productsReducer } from "./store/reducers/products";
 import { cartReducer } from "./store/reducers/cart";
+import { orderReducer } from "./store/reducers/order";
 
 const fetchFonts = async () => {
    await Font.loadAsync({
@@ -33,6 +34,7 @@ export default function App() {
    const rootReducer = combineReducers({
       products: productsReducer,
       cart: cartReducer,
+      order: orderReducer,
    });
 
    const store = createStore(rootReducer, composeWithDevTools());
