@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
 import ShopNavigator from "./navigation/ShopNavigator";
 import { productsReducer } from "./store/reducers/products";
@@ -37,7 +38,11 @@ export default function App() {
       order: orderReducer,
    });
 
-   const store = createStore(rootReducer, composeWithDevTools());
+   const store = createStore(
+      rootReducer,
+      composeWithDevTools(),
+      applyMiddleware(thunk)
+   );
 
    return (
       <Provider store={store}>
